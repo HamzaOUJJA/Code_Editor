@@ -1,0 +1,194 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #1E1E1E;
+    color: #D4D4D4;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    justify-content: center;
+    background: url("Background.png") no-repeat center center fixed;
+    background-size: cover;
+}
+
+.container {
+    width: 98%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 600px;
+}
+
+
+.output-container{
+    width:43%;
+    height: 600px;
+}
+
+h1 {
+    color: #61DAFB;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 30px;
+}
+
+
+form {
+    width: 50%;
+    background-color: #2D2D2D;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    resize: both;
+}
+
+pre {
+    width: 100%;
+    height: 600px;
+    background-color: #1E1E1E;
+    color: #D4D4D4;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #444444;
+    text-align: left;
+    overflow-y: auto;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+label {
+    font-size: 14px;
+    color: #9CDCFE;
+}
+
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    background-color: #333333;
+    color: #D4D4D4;
+    border: 1px solid #444444;
+    border-radius: 4px;
+}
+
+
+.CodeMirror {
+    height: 300px;
+    font-size: 14px;
+    background-color: #1E1E1E;
+    color: #D4D4D4;
+    border: 1px solid #444444;
+    border-radius: 4px;
+    line-height: 1.5; 
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    background-color: #007ACC;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #005F9E;
+}
+
+/* Output section styling */
+h2 {
+    color: #61DAFB;
+    font-size: 20px;
+    margin-top: 30px;
+    text-align: left;
+    width: 80%;
+    margin-bottom: 10px;
+}
+
+
+
+.CodeMirror-line {
+    padding: 4px 0; 
+    height: 20px;
+}
+
+.CodeMirror pre {
+    line-height: 10; /* Consistent line height for code text */
+    padding: 0 4px; /* Prevent text from touching the edges */
+}
+.CodeMirror  {
+    height: 600px;
+}
+
+
+
+
+
+.CodeMirror {
+    font-size: 14px;
+    background-color: #1E1E1E;
+    color: #D4D4D4;
+    border: 1px solid #444444;
+    border-radius: 4px;
+    line-height: 1.5; 
+    overflow-y: hidden; /* Prevent scrollbars from appearing */
+    transition: height 0.3s ease; /* Smooth transition */
+}
+
+.container {
+    width: 98%;
+    display: flex;
+    flex-direction: row;
+    gap: 1%;
+    margin-bottom: 600px;
+    align-items: flex-start;
+}
+
+.CodeMirror-line {
+    padding: 4px 0; 
+    height: 20px;
+}
+
+.CodeMirror pre {
+    line-height: 10;
+    padding: 0 4px;
+}
+
+
+
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        width: 90%;
+    }
+
+    form {
+        width: 100%;
+        margin-bottom: 20px; /* Add some space between editor and output */
+    }
+
+    .output-container {
+        width: 100%;
+        height: auto; /* Adjust height to content */
+    }
+
+    h2 {
+        text-align: center; /* Center the output heading on small screens */
+        width: 100%;
+    }
+}

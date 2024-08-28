@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Code Editor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/theme/material-darker.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/python/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/shell/shell.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/clike/clike.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/ruby/ruby.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/php/php.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/go/go.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/perl/perl.min.js"></script>
+</head>
+<body>
+    
+    <h1>Online Code Editor</h1>
+    <div class="container">
+        <form id="codeForm">
+            <label for="language">Select Language:</label>
+            <select id="language" name="language">
+                <option value="python">Python</option>
+                <option value="javascript">JavaScript</option>
+                <option value="bash">Bash</option>
+                <option value="c">C</option>
+                <option value="cpp">C++</option>
+                <option value="java">Java</option>
+                <option value="ruby">Ruby</option>
+                <option value="php">PHP</option>
+                <option value="go">Go</option>
+                <option value="perl">Perl</option>
+            </select>
+            <br>
+            <textarea id="code" name="code">// Write your code here...</textarea>
+            <br>
+            <button type="submit">Run Code</button>
+        </form>
+
+        <div class="output-container">
+            <h2>Output:</h2>
+            <pre id="output"></pre>
+        </div>
+    </div>
+
+
+
+
+
+    <script>
+        var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+            lineNumbers: true,
+            mode: "python",
+            theme: "material-darker",
+            indentUnit: 4,
+            tabSize: 4,
+            matchBrackets: true,
+        });
+    
+        function adjustEditorHeight() {
+            const lineCount = editor.lineCount();
+            const lineHeight = 24; // Height of each line in pixels
+            const marginBottom = 200; // Additional margin at the bottom
+            const newHeight = lineCount * lineHeight + marginBottom; // Add margin to the height
+            editor.setSize(null, newHeight + "px");
+        }
+    
+        editor.on("change", function() {
+            adjustEditorHeight();
+        });
+    
+        document.getElementById('language').addEventListener('change', function() {
+            var mode = {
+                python: "python",
+                javascript: "javascript",
+                bash: "shell",
+                c: "text/x-csrc",
+                cpp: "text/x-c++src",
+                java: "text/x-java",
+                ruby: "ruby",
+                php: "php",
+                go: "go",
+                perl: "perl"
+            }[this.value];
+            editor.setOption("mode", mode);
+            adjustEditorHeight();  
+        });
+    
+        document.getElementById('codeForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const language = document.getElementById('language').value;
+            const code = editor.getValue();
+    
+            fetch('/run', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ language, code }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('output').textContent = data.output;
+            });
+        });
+    </script>
+    
+    
+    
+    
+
+    <footer style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; text-align: center; color: white;">
+        <div class="developer-info">
+            <h3>About the Developer</h3>
+            <p><strong>Hi there! I'm Hamza OUJJA, a dedicated software developer with a passion for crafting dynamic and user-friendly applications using Flask and Python.</strong></p>
+            <p><strong>Feel free to connect with me and explore more of my work:</strong></p>
+            <p>
+                <a href="https://github.com/HamzaOUJJA?tab=repositories" target="_blank" style="color: white;">GitHub</a> | 
+                <a href="https://www.linkedin.com/in/oujja-hamza-8068691b4/" target="_blank" style="color: white;">LinkedIn</a> | 
+                <a href="mailto:hamzaoujja08@gmail.com" style="color: white;">Email</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
