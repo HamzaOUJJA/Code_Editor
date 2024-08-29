@@ -26,7 +26,6 @@ def run_code():
     data = request.get_json()
     code = data.get('code')
     language = data.get('language')
-    
     filename = f'code.{language}'
     output = ""
 
@@ -39,7 +38,6 @@ def run_code():
             
             compile_cmd = [LANGUAGES[language], source_file, '-o', executable]
             subprocess.check_output(compile_cmd, stderr=subprocess.STDOUT, timeout=10, universal_newlines=True)
-            
             output = subprocess.check_output([f'./{executable}'], stderr=subprocess.STDOUT, timeout=5, universal_newlines=True)
             os.remove(source_file)
             os.remove(executable)
@@ -52,7 +50,6 @@ def run_code():
 
             compile_cmd = [LANGUAGES[language], source_file]
             subprocess.check_output(compile_cmd, stderr=subprocess.STDOUT, timeout=10, universal_newlines=True)
-            
             output = subprocess.check_output(["java", class_name], stderr=subprocess.STDOUT, timeout=5, universal_newlines=True)
             os.remove(source_file)
             os.remove(f"{class_name}.class")

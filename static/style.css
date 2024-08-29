@@ -108,7 +108,7 @@ button:hover {
     background-color: #005F9E;
 }
 
-/* Output section styling */
+
 h2 {
     color: #61DAFB;
     font-size: 20px;
@@ -126,8 +126,8 @@ h2 {
 }
 
 .CodeMirror pre {
-    line-height: 10; /* Consistent line height for code text */
-    padding: 0 4px; /* Prevent text from touching the edges */
+    line-height: 10;
+    padding: 0 4px; 
 }
 .CodeMirror  {
     height: 600px;
@@ -144,8 +144,8 @@ h2 {
     border: 1px solid #444444;
     border-radius: 4px;
     line-height: 1.5; 
-    overflow-y: hidden; /* Prevent scrollbars from appearing */
-    transition: height 0.3s ease; /* Smooth transition */
+    overflow-y: hidden; 
+    transition: height 0.3s ease; 
 }
 
 .container {
@@ -179,16 +179,16 @@ h2 {
 
     form {
         width: 100%;
-        margin-bottom: 20px; /* Add some space between editor and output */
+        margin-bottom: 20px; 
     }
 
     .output-container {
         width: 100%;
-        height: auto; /* Adjust height to content */
+        height: auto; 
     }
 
     h2 {
-        text-align: center; /* Center the output heading on small screens */
+        text-align: center; 
         width: 100%;
     }
 }
